@@ -1,0 +1,49 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+{% block header %}{% endblock %}
+{% block nav%} - Accueil {% endblock%}
+{% block body %}
+    <main>
+        <div class="intro">
+            <h1>SORTIR.COM</h1>
+            <p>FAITES DE BELLES RENCONTRES ET AMUSEZ VOUS ENTRE AMIS</p>
+            <button><a style="text-decoration: none;color: black " href="{{ path("app_template") }}"> Les Sorties </a></button>
+        </div>
+        <div class="achievements">
+            <div class="sortir">
+                <i class="fas fa-handshake"></i>
+                <p class="sortir-heading">Rencontre de nouveaux amis !.</p>
+                <p class="sortir-text">Tous les jours, nous rencontrons des personnes qui nous laissent totalement indifférents et un jour nous rencontrons celle ou celui qui change à jamais notre vie... Une rencontre qui bouleverse tout. Une rencontre d'amour ou d'amitié.</p>
+
+            </div>
+            <div class="sortir">
+                <i class="fas fa-coffee"></i>
+                <p class="sortir-heading">Participe aux diverses sorties proposées !</p>
+                <p class="sortir-text">Faites de sorties amicales pour votre bien-être. Le boulot vous stresse et vous souhaitez vous détendre ? Vous ne le savez peut-être pas, mais faire des sorties entre amis est un moyen efficace pour vous relaxer.</p>
+
+            </div>
+            <div class="sortir">
+                <i class="fas fa-glass-cheers"></i>
+                <p class="sortir-heading">Organise tes activités !</p>
+                <p class="sortir-text">Il est important de vous rencontrer de temps en temps puisque cela peut vous aider à sortir de la routine. Alors, cette semaine-ci, histoire de vous déstresser, organisez une rencontre avec vos potes.</p>
+            </div>
+
+        </div>
+        <div class="about-me">
+            <img src="{{asset('images/accueilbody.jpg')}}" width="100" >
+        </div>
+
+    </main>
+{% endblock %}
+{% block footer %}{% endblock %}
+
+
+
+
+
+
+
+
+

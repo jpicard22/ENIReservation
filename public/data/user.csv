@@ -1,0 +1,7 @@
+"id","email","roles","password","prenom","pseudo","nom","tel","actif","campus_id"
+"52","admin2@gmail.com","[""ROLE_ADMIN""]","$2y$13$GmdV8/AKGD0MPyMFlyR71OJgRJMolOsMnnXxzue1xhQrmKiUoK.uy","admin","Admin2","Admin","0102030405","1",NULL
+"53","ss@gmail.com","[]","$2y$13$AQduGbjpgxJKYTDzbfLfp.sRScW5g9e0Cs.un9sHK3wyVZT4/9vzi","Stephanie","steph2","Pouliquen","0102030405","0",NULL
+"54","nn@gmail.com","[]","$2y$13$92bGgB.03kqOvg9NYuE6zujMfX.CfAstyCare18kYq1NOl1TgNJQ.","Nathan","Nathan2","Baudine","0102030405","0",NULL
+"55","mm@gmail.com","[]","$2y$13$/RLTZqx3FyhHEopvhWjEreOQrh48LdFuAHELbeX2Aph76ZonZmmdS","Martin","Mart2","Klauer","0102030405","1",NULL
+"56","juju@gmail.com","[]","$2y$13$2UfXkX9BJR3qiMvEE8Fkg.7y.Hl9wBc3/6ZZkATv39b1LRgQu8VJ2","Julien","Juju2","Le Morvan","0102030405","1",NULL
+"59","jey22100@gmail.com","[""ROLE_ORGANISATEUR""]","password","jerome","jeje2","picard","0600000000","0","10"

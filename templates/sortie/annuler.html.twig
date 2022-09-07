@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annuler une sortie{% endblock %}
+{% block nav%} {% endblock%}
+
+{% block stylesheets %}
+    <link href="{{asset('css/creerSortie.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                <h3>Annuler une sortie</h3>
+                <div class="card">
+                    <form action="" method="POST">
+                        <div class="row justify-content-between text-left">
+                            <div>
+                                <label for="name"> Nom de la sortie </label>
+                                <input type="text" name="name" value="{{ sortie.nom }}" disabled >
+                            </div>
+                        </div>
+                        <div class="row justify-content-between text-left">
+                            <div>
+                                <label for="date"> Date de la sortie </label>
+                                <input type="date" name="date" value="{{ sortie.dateHeureDebut.format('Y-m-d') }}" disabled >
+                            </div>
+                        </div>
+                        <div class="row justify-content-between text-left">
+                            <div>
+                                <label for="campus"> Campus </label>
+                                <input type="text" name="campus" value="{{ sortie.siteOrganisateur.nom }}" disabled >
+                            </div>
+                        </div>
+                        <div class="row justify-content-between text-left">
+                            <div>
+                                <label for="lieu"> Lieu </label>
+                                <input type="text" name="lieu" value="{{ sortie.lieu.rue }} {{ sortie.lieu.ville.nom }} {{ sortie.lieu.ville.codePostal }}" disabled >
+                            </div>
+                        </div>
+                        <div class="row justify-content-between text-left">
+                            <div>
+                                <label for="motif"> Motif d'annulation </label>
+                                <textarea required="true" name="motif">{{ sortie.motifAnnulation}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="id" value="{{ sortie.id }}">
+                            <input type="submit" name="etat" value="Enregistrer" class="btn-block btn-primary" />
+                            <a style="list-style: none; text-decoration: none" href="{{ path("app_template") }}">
+                                <input disabled value="Annuler" class="btn-block btn-secondary" style="width: 102px" />
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

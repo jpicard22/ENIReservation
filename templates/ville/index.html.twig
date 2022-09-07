@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gérer les Villes{% endblock %}
+{% block nav%} - Villes {% endblock%}
+
+{% block stylesheets %}
+    <link href="{{asset('css/gererVilles.css')}}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <div class="centrerbloc">
+        <h1>Gérer les villes</h1>
+        <p>Filtrer les Villes</p>
+    </div>
+    <form method="post" name="ville_searcher">
+    <div class="search-box">
+        <input class="search-txt" name="search-txt" type="text" placeholder="Ville">
+        <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+    </div>
+    </form>
+    <div class="tableau">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>CodePostal</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ville in villes %}
+                <tr>
+                    <td>{{ ville.id }}</td>
+                    <td>{{ ville.nom }}</td>
+                    <td>{{ ville.codePostal }}</td>
+                    <td>
+                        <div class="allignerBouton">
+                            <a href="{{ path('app_ville_edit', {'id': ville.id}) }}">
+                                <button class="btn">Modifier</button>
+                            </a>
+                            <form method="post" action="{{ path('app_ville_delete', {'id': ville.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ ville.id) }}">
+                                <button class="btn-danger btn">Supprimer</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('app_ville_new') }}"><i class="fa fa-plus fa-5x" ></i>
+        </a>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{  asset('css/login.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+{% endblock %}
+
+{% block title %}Se connecter{% endblock %}
+{% block nav%} - Connexion {% endblock%}
+
+{% block body %}
+
+    <main class="d-flex align-items-center main py-3 py-md-0">
+        <div class="container">
+            <div class="card login-card">
+                <div class="row no-gutters">
+                    <div class="col-md-5">
+                        <img src="{{  asset('images/login.jpg') }}" alt="login" class="login-card-img">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <p class="login-card-description">Se connecter</p>
+                                <form method="post">
+                                    {# {% if error %} #}
+{#                                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+{#                                    {% endif %} 
+{#                                    {% if app.user %}#}
+{#                                        <div class="mb-3">#}
+{#                                            Bonjour {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>#}
+{#                                        </div>#}
+{#                                    {% endif %}#}
+
+                                {%  if accesDenied %}
+                                     <div class="alert alert-danger">{{ accesDenied }}</div>
+                                 {% endif %}     
+                                <div class="form-group">
+                                    <label for="inputEmail" class="sr-only">Email</label>
+                                    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" autocomplete="email" required autofocus value="{{ last_username }}">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="inputPassword" class="sr-only">Mot de passe</label>
+                                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="***********" autocomplete="current-password" required>
+                                </div>
+                                <div class="checkbox mb-3">
+                                    <label>
+                                        <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                                    </label>
+                                </div>
+
+                                <input type="hidden" name="_csrf_token"value="{{ csrf_token('authenticate') }}">
+                                <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Connexion">
+                            </form>
+{#                            <a href="#!" class="forgot-password-link">Mot de passe oublié ?</a>#}
+{#                            <p class="login-card-footer-text">Don't have an account? <a href="#!" class="text-reset">Register here</a></p>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--
+                  <div class="form-prompt-wrapper">
+                    <div class="custom-control custom-checkbox login-card-check-box">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1">
+                      <label class="custom-control-label" for="customCheck1">Remember me</label>
+                    </div>
+                    <a href="#!" class="text-reset">Forgot password?</a>
+                  </div>
+              </div>
+            </div> -->
+        </div>
+    </main>
+
+    {% block javascripts %}
+    {% endblock %}
+{% endblock %}
+

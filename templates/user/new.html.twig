@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un utilisateur{% endblock %}
+{% block nav%} - Utilisateur {% endblock%}
+{% block stylesheets %}
+    <link href="{{asset('css/gererUtilisateurs.css')}}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+
+    <div class="centrerbloc">
+        <h3>Ajout d'un nouvel utilisateur</h3>
+    </div>
+
+    <div class= "achievements">
+        <h3> Vous pouvez ajouter un utilisateur manuellement</h3>
+    </div>
+
+    <div class="achievements">
+        <div class="sortir">
+            <tr>
+                <td> {{ include('user/_form.html.twig') }}</td>
+            </tr>
+        </div>
+    </div>
+   
+{% endblock %}

@@ -1,0 +1,184 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Sorties!{% endblock %}
+
+{% block nav%}  {% endblock%}
+
+{% block body %}
+    <div id="booking" class="section">
+        <div class="section-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-push-4">
+                        <div class="booking-cta">
+                            <h1>Trouvez votre prochaine sortie</h1>
+                            <p>Quelle sera votre prochaine sortie ? Et bien vous le saurez ici ! Une sortie mémorable avec votre crush ou votre BAE personne ne le sait encore mais vous le saurez dans quelques isntant
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-md-pull-8">
+                        <div class="booking-form">
+                            <form method="post" name="formular_searcher">
+                                <div class="form-group">
+                                    <span class="form-label">Nom de la sortie</span>
+                                    <input class="form-control" type="text" name="sortie-name" placeholder="Entrer le nom de la sortie">
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <span class="form-label">Début</span>
+                                            <input class="form-control" type="date" name="date_start">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <span class="form-label">Fin</span>
+                                            <input class="form-control" type="date" name="date_end">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <span class="form-label">Campus</span>
+                                            <select class="form-control" name="campus_choice">
+                                                <option value="-1">Tout les campus</option>
+                                                {% for campus in allCampus %}
+                                                    <option>{{ campus.nom }}</option>
+                                                {% endfor %}
+
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row options-complementaire">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <span class="form-label">Options complémentaire</span>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="organisateur">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Sortie dont je suis l'organisateur/trice
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="inscrit">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Sortie auxquelles je suis inscrit/e
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="notInscrit">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Sortie auxquelles je ne suis pas inscrit/e
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="sortie_passe">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Sortie passées
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-btn d-flex justify-content-between">
+                                    <button class="submit-btn" type="submit"><i class="fa fa-search" aria-hidden="true"></i>
+                                        Rechercher
+                                    </button>
+                                    {% if ( is_granted("ROLE_ADMIN") or is_granted("ROLE_ORGANISATEUR") ) %}
+                                    <a style="background: #198754" class="submit-btn" href="{{ path('app_sortie_creation') }}">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="container">
+    <div class = "row mt-5">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Nom de la sortie</th>
+                <th scope="col">Date de la sortie</th>
+                <th scope="col">Clôture</th>
+                <th scope="col">Inscrit/places</th>
+                <th scope="col">Etat</th>
+                <th scope="col">Organistaeur</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for sortie in allSortie %}
+                <tr>
+                    <th scope="row">{{ sortie.nom }}</th>
+                    <td>{{ sortie.dateHeureDebut|date("d/m/Y") }}</td>
+                    <td>{{ "now"|date("d/m/Y") }}</td>
+                    <td> {{ sortie.nbUserCurrent ? sortie.nbUserCurrent : 0  }} / {{ sortie.nbInscriptionsMax }} </td>
+                    <td>{{ sortie.etat }}</td>
+                    <td>{{ sortie.organisateur != null ? sortie.organisateur.nom : ""  }} {{ sortie.organisateur != null ? sortie.organisateur.prenom : "" }} </td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                        {# User co pour une sortie pas encore passer #}
+                        {% if app.user and sortie.dateLimiteInscription|date("m/d/Y") > "now"|date("m/d/Y") and sortie.etat.libelle != 'annulée'%}
+                            {% set inclus = "false" %}
+                            {% for userSortie in sortie.users %}
+                                {% if app.user.id == userSortie.id %}
+                                    {% set inclus = "true" %}
+                                {% endif %}
+                            {% endfor %}
+
+
+                            {# User co Pas encore isncrit #}
+                        {% if inclus != "true" %}
+                            {% if sortie.nbUserCurrent < sortie.nbInscriptionsMax %}
+                                <a href="{{ path("app_sortie_add_user",{'id' : sortie.id, 'userId' : app.user.id}) }}" class="btn btn-success m-1">S'inscrire</a>
+                            {% endif %}
+
+
+                            {# User co déjà inscrit #}
+                        {% else %}
+                            <a href="{{ path("app_sortie_remove_user",{'id' : sortie.id, 'userId' : app.user.id}) }}" class="btn btn-danger m-1">Se désinscrire</a>
+
+
+                        {% endif %}
+                            <a href="{{ path("app_sortie_info",{'id' : sortie.id}) }}" class="btn btn-info m-1">Afficher</a>
+
+                            {% if sortie.organisateur.id == app.user.id or is_granted("ROLE_ADMIN") %}
+                                <a href="{{ path("app_sortie_annuler",{'id' : sortie.id}) }}" class="btn btn-warning m-1">Annuler</a>
+                            {% endif %}
+
+
+                        {% else %}
+
+                            {% if sortie.motifAnnulation %}
+                                <p class="m-1"> {{ sortie.motifAnnulation  }} </p>
+                            {% endif %}
+                            {# User co organistaeur #}
+                            {% if app.user and sortie.organisateur.email == app.user.email %}
+                                <a href="{{ path("app_sortie_remove_sortie",{'id' : sortie.id}) }}" class="btn btn-danger m-1">Supprimer</a>
+                            {% endif %}
+
+                        {% endif %}
+                        </div>
+                    </td>
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+    {% endblock %}

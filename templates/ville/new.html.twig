@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Ville{% endblock %}
+{% block nav%} - Villes {% endblock%}
+
+{% block stylesheets %}
+    <link href="{{asset('css/gererVilles.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+    <div class="centrerbloc">
+        <h1>Gérer les villes</h1>
+        <p>Ajouter une Ville</p>
+    </div>
+
+    <div class="blocAjoutVille">
+    {{ include('ville/_form.html.twig') }}
+
+
+        <a href="{{ path('app_ville_index') }}">
+            <button type="submit" class="btn">Précédent</button>
+        </a>
+    </div>
+{% endblock %}

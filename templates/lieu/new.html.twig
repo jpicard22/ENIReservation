@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau lieu{% endblock %}
+{% block nav%} - Lieu {% endblock%}
+{% block stylesheets %}
+    <link href="{{asset('css/gererLieux.css')}}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <div class="centrerbloclieu">
+        <h1>Gérer les Lieux</h1>
+        <p>Ajouter un lieu</p>
+    </div>
+
+    <div class="blocAjouterLieux">
+        {{ include('lieu/_form.html.twig') }}
+
+
+        <a href="{{ path('app_sortie_creation') }}">
+            <button type="submit" class="btn">Précédent</button>
+        </a>
+    </div>
+{% endblock %}

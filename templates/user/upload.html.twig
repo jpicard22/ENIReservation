@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Upload de photo de profil</h2>
+
+    {{ form(form) }}
+
+
+    <a href="{{ path('profil') }}">
+                <button type="submit" class="btn">Précédent</button>
+            </a>
+{% endblock %}
+
+{% block title %}Upload de photo de profil{% endblock %}
+

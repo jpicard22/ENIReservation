@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Ville{% endblock %}
+{% block nav%} - Villes {% endblock%}
+
+{% block stylesheets %}
+    <link href="{{asset('css/gererVilles.css')}}" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+
+
+    <div class="centrerbloc">
+        <h1>Gérer les villes</h1>
+        <p>Editer une Ville</p>
+    </div>
+<div class="blocAjoutVille">
+    {{ include('ville/_form.html.twig', {'button_label': 'Mise à jour'}) }}
+
+
+
+
+    <a href="{{ path('app_ville_index') }}">
+        <button type="submit" class="btn">Précédent</button>
+    </a>
+
+    {{ include('ville/_delete_form.html.twig') }}
+</div>
+{% endblock %}

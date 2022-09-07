@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des utilisateurs{% endblock %}
+{% block nav%} - Utilisateurs {% endblock%}
+
+{% block stylesheets %}
+  <link href="{{asset('css/gererUtilisateurs.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="centrerbloc">
+    <h1>Gestion des utilisateurs</h1>
+</div>
+  
+  <form method="post" name="campus_searcher">
+    <div class="search-box">
+      <input class="search-txt" name="search-txt" type="text" placeholder="utilisateur">
+      <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+    </div>
+  </form>
+
+  <div class="tableau">
+    <table class="table">
+      <thead>
+        <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Roles</th>
+        <th>Prénom</th>
+        <th>Pseudo</th>
+        <th>Nom</th>
+        <th>Téléphone</th>
+        <th>Actif</th>
+        <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for user in users %}
+            <div class="allignerNom">
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>{{ user.prenom }}</td>
+                    <td>{{ user.pseudo }}</td>
+                    <td>{{ user.nom }}</td>
+                    <td>{{ user.tel }}</td>
+                    <td><a href="{{ path('userActif', {id: user.id}) }}" />
+                    {{ user.actif ? 'Actif' : 'Inactif' }}
+                    {# <td >
+                        <div class="allignerBouton">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" checked value="1" onclick="linksInNewWindow(this.checked);" 
+                                        onkeypress="linksInNewWindow(this.checked);" 
+                                        <a href="{{ path('gestionUtilisateurs', {'actif': user.actif}) }}" id="linksnewwin"/>
+                                <label for="linksnewwin">  </label>
+                            </div>
+                        </div>
+                    </td> #}
+                    <td>
+                        <form method="post" action="{{ path('UserDelete', {'id': user.id}) }}"
+                              onsubmit="return confirm('Etes-vous sûr de vouloir le supprimer ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                            <button class="btn">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+          {% else %}
+              <tr>
+                  <td colspan="4">no records found</td>
+              </tr>
+          </div>
+          {% endfor %}
+      </tbody>
+    </table>
+     <a href="{{ path('app_register') }}"><i class="fa fa-plus fa-5x"></i></a>
+     {# <a href="{{ path('user_post') }}"><i class="fa fa-plus fa-5x"></i></a> #}
+      {# <a href="{{ path('uploadUserCSV') }}"><i class="fa fa-plus fa-5x"></i></a> #}
+  </div>
+{% endblock %}

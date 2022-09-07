@@ -1,0 +1,65 @@
+%YAML 1.1
+---
+# enireservation.user
+-
+  id: 2
+  email: "admin9@gmail.com"
+  roles: "[\"ROLE_ADMIN\"]"
+  password: "$2y$13$GmdV8/AKGD0MPyMFlyR71OJgRJMolOsMnnXxzue1xhQrmKiUoK.uy"
+  prenom: "admin9"
+  pseudo: "Admin9"
+  nom: "Admin9"
+  tel: "0102030405"
+  actif: 1
+-
+  id: 3
+  email: "s9@gmail.com"
+  roles: "[]"
+  password: "$2y$13$AQduGbjpgxJKYTDzbfLfp.sRScW5g9e0Cs.un9sHK3wyVZT4/9vzi"
+  prenom: "Stephanie9"
+  pseudo: "steph9"
+  nom: "Pouliquen9"
+  tel: "0102030405"
+  actif: 0
+-
+  id: 4
+  email: "n9@gmail.com"
+  roles: "[]"
+  password: "$2y$13$92bGgB.03kqOvg9NYuE6zujMfX.CfAstyCare18kYq1NOl1TgNJQ."
+  prenom: "Nathan9"
+  pseudo: "Nathan9"
+  nom: "Baudine9"
+  tel: "0102030405"
+  actif: 0
+-
+  id: 5
+  email: "m9@gmail.com"
+  roles: "[]"
+  password: "$2y$13$/RLTZqx3FyhHEopvhWjEreOQrh48LdFuAHELbeX2Aph76ZonZmmdS"
+  prenom: "Martin9"
+  pseudo: "Mart9"
+  nom: "Klauer9"
+  tel: "0102030405"
+  actif: 1
+-
+  id: 6
+  email: "ju9@gmail.com"
+  roles: "[]"
+  password: "$2y$13$2UfXkX9BJR3qiMvEE8Fkg.7y.Hl9wBc3/6ZZkATv39b1LRgQu8VJ2"
+  prenom: "Julien9"
+  pseudo: "Juju9"
+  nom: "Le Morvan9"
+  tel: "0102030405"
+  actif: 1
+-
+  id: 9
+  email: "jey229@gmail.com"
+  roles: "[]"
+  password: "password"
+  prenom: "jerome9"
+  pseudo: "jeje9"
+  nom: "picard9"
+  tel: "0600000000"
+  actif: 0
+  campus_id: 10
+...

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer un Campus{% endblock %}
+{% block nav%} - Campus {% endblock%}
+{% block stylesheets %}
+    <link href="{{asset('css/gererCampus.css')}}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <div class="centrerbloc2">
+        <h3>Modifier un Campus</h3>
+    </div>
+
+    <div class="tableau">
+        <table class="table">
+            <tbody>
+            <div class="allignerNom">
+                <tr>
+                    <td> {{ include('campus/_form.html.twig', {'button_label': 'Mettre à jour'}) }}</td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+        <a href="{{ path('campusList') }}">
+            <button type="submit" class="btn">Précédent</button>
+        </a>
+    </div>
+{% endblock %}
